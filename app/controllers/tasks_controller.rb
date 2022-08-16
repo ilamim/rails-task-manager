@@ -19,7 +19,14 @@ class TasksController < ApplicationController
   def view
   end
 
+  def edit
+    set_task
+  end
+
   def update
+    set_task
+    @task.update(task_params)
+    redirect_to task_path(@task)
   end
 
   def destroy
