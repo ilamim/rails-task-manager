@@ -7,7 +7,13 @@ class TasksController < ApplicationController
     set_task
   end
 
+  def new
+    @task = Task.new
+  end
+
   def create
+    @task = Task.create(task_params)
+    redirect_to task_path(@task)
   end
 
   def view
@@ -22,6 +28,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
+    params.require(:task).permit(:title, :details)
   end
 
   def set_task
